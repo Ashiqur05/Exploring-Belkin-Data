@@ -1,0 +1,77 @@
+---
+title: "BelkinElago data"
+author: "Ashiqur"
+date: "10/9/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## BelkinElago data exploratory analysis
+Data set has been given by Danielle Sherman and the exploratory Analysis is given below :
+
+#### load data set
+```{r BelkinElago}
+Belkin<-read.csv2("BelkinElagoComplete.csv")
+```
+
+
+#### Summary Function
+summary function gives us the min, max, mean, median, and quartiles of each attribute
+
+```{r}
+summary(Belkin)
+#hist(Belkin$age)
+#plot(Belkin$age,Belkin$elevel)#
+#cor(Belkin$age,Belkin$car)
+```
+#### Head of the data set
+```{r}
+head(Belkin)
+
+```
+####df_status()
+gives information on the structure of the dataframe and the data it contains, such as variable names and data types
+```{r  echo=TRUE}
+#library(DataExplorer)
+library(funModeling)
+#plot_str(Belkin)//// Output doesn't show in the html file
+df_status(Belkin)
+```
+
+
+#### Histogram of salary,age,credit
+salary,age data is not normaly distributed but credit data is normaly distributed 
+```{r pressure, echo=TRUE}
+
+#salary
+library(ggplot2)
+salary_his <- ggplot(Belkin,aes(x=salary))
+salary_his + geom_histogram(binwidth=1000,color='red',fill='pink')
+
+#age
+library(ggplot2)
+age_his <- ggplot(Belkin,aes(x=age))
+age_his + geom_histogram(binwidth=1,color='red',fill='pink')
+
+#credit
+library(ggplot2)
+credit_his <- ggplot(Belkin,aes(x=credit))
+credit_his + geom_histogram(binwidth=1,color='red',fill='pink')
+
+```
+#### Barplots
+
+```{r  echo=TRUE}
+library(ggplot2)
+## counts (or sums of weights)
+belkin_bar<- ggplot(Belkin, aes(elevel))
+# Number of people in each education level:
+#belkin_bar + geom_bar(color="red",fill="black")
+belkin_bar + geom_bar(color="red",fill="black")
+belkin_bar + geom_bar(aes(fill = brand))
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
