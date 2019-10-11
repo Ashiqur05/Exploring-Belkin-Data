@@ -42,7 +42,7 @@ df_status(Belkin)
 ```
 
 
-#### Histogram of salary,age,credit
+#### Histogram of salary,age,credit(used for one continuous)
 salary,age data is not normaly distributed but credit data is normaly distributed 
 ```{r pressure, echo=TRUE}
 
@@ -62,16 +62,42 @@ credit_his <- ggplot(Belkin,aes(x=credit))
 credit_his + geom_histogram(binwidth=1,color='red',fill='pink')
 
 ```
-#### Barplots
+#### Barplots(used for one continuous)
 
 ```{r  echo=TRUE}
 library(ggplot2)
+#-------------------------------------elevel bar plot---------#
 ## counts (or sums of weights)
 belkin_bar<- ggplot(Belkin, aes(elevel))
 # Number of people in each education level:
 #belkin_bar + geom_bar(color="red",fill="black")
+Belkin$elevel<-as.factor(Belkin$elevel)
 belkin_bar + geom_bar(color="red",fill="black")
-belkin_bar + geom_bar(aes(fill = brand))
+belkin_bar + geom_bar(aes(fill = elevel))#color seperated by elevel
+belkin_bar + geom_bar(aes(fill = brand),position = "fill")#color seperated by brand
+belkin_bar + geom_bar(aes(fill = brand),position = "dodge")#color seperated by brand in two bar
+
+#-------------------------------------car bar plot--------------------#
+belkin_bar<- ggplot(Belkin, aes(car))
+belkin_bar + geom_bar(aes(fill = brand))#color seperated by brand
+belkin_bar + geom_bar(aes(fill = elevel))#color seperated by elevel
+
+#-------------------------------------Zipcode bar plot--------------------#
+belkin_bar<- ggplot(Belkin, aes(zipcode))
+
+belkin_bar + geom_bar(aes(fill = brand))#color seperated by brand
+belkin_bar + geom_bar(aes(fill = elevel))#color seperated by elevel
+
+belkin_bar + geom_bar(aes(fill = brand),position = "dodge")#color seperated by brand in two bar
+
+
+```
+###Scatterplots(used for two continuous)
+
+```{r  echo=TRUE}
+library(ggplot2)
+belkin_scatt <- ggplot(data=Belkin,aes(x = age,y=salary)) 
+belkin_scatt  + geom_point()
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
