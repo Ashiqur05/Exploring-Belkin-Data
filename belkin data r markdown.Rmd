@@ -95,9 +95,16 @@ belkin_bar + geom_bar(aes(fill = brand),position = "dodge")#color seperated by b
 ###Scatterplots(used for two continuous)
 
 ```{r  echo=TRUE}
+#----------------------------------------salary vs age------------------------#
 library(ggplot2)
 belkin_scatt <- ggplot(data=Belkin,aes(x = age,y=salary)) 
-belkin_scatt  + geom_point(aes(color=factor(brand)))
+belkin_scatt  + geom_point(aes(color=factor(brand)))#color seperated by brand
+
+
+#------------------------------------salary vs credit----------------------------
+library(ggplot2)
+belkin_scatt <- ggplot(data=Belkin,aes(x = salary,y=credit)) 
+belkin_scatt  + geom_point(aes(color=factor(brand)))#color seperated by brand
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
