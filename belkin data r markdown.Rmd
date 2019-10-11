@@ -97,7 +97,7 @@ belkin_bar + geom_bar(aes(fill = brand),position = "dodge")#color seperated by b
 ```{r  echo=TRUE}
 library(ggplot2)
 belkin_scatt <- ggplot(data=Belkin,aes(x = age,y=salary)) 
-belkin_scatt  + geom_point()
+belkin_scatt  + geom_point(aes(color=factor(brand)))
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
